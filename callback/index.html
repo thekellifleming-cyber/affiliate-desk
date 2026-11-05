@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Affiliate Desk Login</title><link rel="stylesheet" href="../style.css"></head>
+<body><main>
+<header><a class="brand" href="../">Affiliate<b>Desk</b></a></header>
+<h1 id="h">TikTok login finished</h1>
+<p class="muted" id="msg">Beta testing: copy this whole address and paste it into the terminal. It works once and expires in a few minutes.</p>
+<div class="card"><p id="addr" style="overflow-wrap:anywhere;font-family:ui-monospace,monospace;font-size:14px"></p>
+<button id="copy" type="button" style="font:inherit;font-weight:700;border:0;border-radius:10px;padding:10px 14px;background:var(--accent);color:#fff;cursor:pointer">Copy address</button></div>
+<p class="muted">Nothing on this page is sent anywhere.</p>
+</main>
+<script>
+const a=location.href, q=new URLSearchParams(location.search);
+document.getElementById("addr").textContent=a;
+if(q.get("error")){document.getElementById("h").textContent="TikTok login didn't finish";document.getElementById("msg").textContent="TikTok said: "+q.get("error")+(q.get("error_description")?" ("+q.get("error_description")+")":"")+". Copy the address anyway so Claude can see the reason.";}
+document.getElementById("copy").onclick=async()=>{try{await navigator.clipboard.writeText(a);document.getElementById("copy").textContent="Copied";}catch{getSelection().selectAllChildren(document.getElementById("addr"));}};
+</script>
+</body></html>
